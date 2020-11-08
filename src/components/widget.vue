@@ -2,10 +2,10 @@
 <div class = 'card' id = 'widget'>
     <img alt="Zilliqa logo" src="../assets/logo.png">
     <p class = 'title'>xdPay</p>
-    <p>Pay Using a ZRC20 token</p>
-    <p>You are paying {{ amount }} XGSD. You can pay this in any ZRC20 token</p>
-
     <p v-if = 'network != "mainnet"' id = 'network'>({{ network }})</p>
+
+    <p id = 'price'>{{ amount }} XGSD.</p>
+    <p class = 'subtitle'>You can pay this in any ZRC20 token</p>
 
     <label for ='tokens'>Choose token</label>
     <select id = 'token' v-model = 'paymentToken'>
@@ -20,6 +20,14 @@
 <script src = './widget.js'></script>
 
 <style scoped>
+.subtitle {
+    font-size: 0.7em;
+    font-weight: bold
+}
+
+#price {
+    font-size: 2em;
+}
 .card {
     border-radius: 1.5em;
     box-shadow: 1px 1px 10px rgba(165, 165, 165, 0.4);
