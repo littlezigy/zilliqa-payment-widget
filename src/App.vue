@@ -34,5 +34,14 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.debug {
+    font-size: 0.8em;
+    color: darkblue;
+    font-weight: bold;
+}
+.debug em {
+    font-size: 1.3em;
+    font-style: unset;
+}
 </style>
 
