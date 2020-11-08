@@ -1,9 +1,6 @@
 import { Zilswap } from 'zilswap-sdk';
-import { Zilliqa } from '@zilliqa-js/zilliqa';
 // import * as sdk from 'zilswap-sdk';
 import axios from 'axios';
-
-let zq = new Zilliqa();
 
 export default {
     data() {
@@ -63,8 +60,6 @@ export default {
         payXSGD: function() {
         },
         payInZRC20: function() {
-            zq = new Zilliqa(null, window.zilPay.provider);
-            console.log('ZQ', zq);
             const provider = window.zilPay;
 
             let zilSwap = new Zilswap(this.network, provider);
@@ -103,10 +98,6 @@ export default {
             .then(res => {
                 if(res === true) {
                     this.wallet = window.zilPay.wallet.defaultAccount;
-                    delete zq.subscriptionBuilder;
-                    //console.log('WIN ZILOPAY', zq);
-                    //let zilswap = new Zilswap(this.network, { ...zq, wallet: this.wallet });
-                    // console.log('ZILPAY', zilswap);
 
                     this.detectNetwork();
 
