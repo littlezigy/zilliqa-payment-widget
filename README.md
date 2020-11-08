@@ -1,5 +1,7 @@
 # Zilliqa ZRC20 Payment Widget
 
+
+[![Video](https://raw.githubusercontent.com/littlezigy/zilliqa-payment-widget/main/src/assets/screenshot_widget.png)](https://youtu.be/nYp1u1ygvnc)
 ## Using the Widget
 To use this widget in your page, copy the css and js files into your page.
 
