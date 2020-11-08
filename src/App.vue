@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="widget">
     <Widget merchantAddress = 'merchantAddress' :amount = 'amount' msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-#app {
+#widget {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
