@@ -43,5 +43,9 @@ export default {
     font-size: 1.3em;
     font-style: unset;
 }
+.error {
+    font-size: 0.8em;
+    color: red;
+}
 </style>
 
