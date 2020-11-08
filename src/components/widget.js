@@ -5,14 +5,18 @@ export default {
     data() {
         return {
             wallet: null,
-            amount: 100,
+            payAmount: 100,
             tokens: [],
-            paymentToken: null,
+            paymentToken: {id: null, name: ''},
             network: '',
             testnet: { tokens: [] },
             mainnet: { tokens: [] },
-            merchantAddress: 'zil15q2gxq7tze6k025apsa3c362chz6k76zrmnzkk'
         }
+    },
+
+    props: {
+        merchantAddress: String,
+        amount: Number
     },
     methods: {
         pay: function() {

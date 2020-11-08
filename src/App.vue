@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Widget msg="Welcome to Your Vue.js App"/>
+    <Widget merchantAddress = 'merchantAddress' :amount = 'amount' msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
@@ -9,10 +8,16 @@
 import Widget from './components/widget.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Widget
-  }
+    name: 'App',
+    data() {
+        return {
+            amount: 100,
+            merchantAddress: 'zil15q2gxq7tze6k025apsa3c362chz6k76zrmnzkk'
+        }
+    },
+    components: {
+        Widget
+    }
 }
 </script>
 
