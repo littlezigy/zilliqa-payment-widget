@@ -15,6 +15,7 @@ export default {
             network: '',
             testnet: { tokens: [] },
             mainnet: { tokens: [] },
+            slippage: 0,
         }
     },
 
@@ -42,7 +43,8 @@ export default {
                 .then(res => {
                     console.log('RESS NEW RATES', res);
                     console.log('RESULT RATES', res.data);
-                    this.payAmount = res;
+                    this.payAmount = res.expectedAmount / 1000000;
+                    this.slippage = res.slippage * 1000000;
                 });
             }
         },
