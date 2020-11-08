@@ -16,6 +16,12 @@ export default {
             testnet: { tokens: [] },
             mainnet: { tokens: [] },
             slippage: 0,
+            slippageHigh: 5,
+            slippageMax: 10,
+            showAdvanced:false,
+
+            success: null,
+            error: false
         }
     },
 

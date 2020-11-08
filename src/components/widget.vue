@@ -12,7 +12,22 @@
         <option v-for = '(token, name, index) in tokens' :value = '{ id: token, name}' :key = 'index'>{{ name }}</option>
     </select>
 
-    <button @click = 'pay'>Pay {{ payAmount }} {{ paymentToken.name }}</button>
+    <p class = 'error' v-if = 'error'>{{ error }}</p>
+    <button @click = 'pay'>Pay {{ payAmount.toFixed(4) }} {{ paymentToken.name }}</button>
+
+    <button id = 'showAdvanced' @click = 'showAdvanced = !showAdvanced'>Show Advanced</button>
+
+    <div class = 'debug'>
+        <div v-if = 'slippage > slippageHigh'>
+            <p v-if = 'slippage <= slippageMax'>Slippage is getting high. You are probably getting close to the pool limit. Try reducing the payment amount</p>
+            <p v-else>Slippage is too high. You are probably getting close to the pool limit. Try reducing the payment amount</p>
+            <p>Slippage: <em>{{ slippage.toFixed(2) }}%</em></p>
+        </div>
+    </div>
+
+    <div id = 'advanced' v-if = 'showAdvanced'>
+        <p>Slippage: {{ slippage }}</p>
+    </div>
 
 </div>
 </template>
