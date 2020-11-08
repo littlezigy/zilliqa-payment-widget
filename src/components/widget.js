@@ -1,5 +1,4 @@
 import { Zilswap } from 'zilswap-sdk';
-// import * as sdk from 'zilswap-sdk';
 import axios from 'axios';
 
 export default {
@@ -114,6 +113,11 @@ export default {
         }
     },
     mounted() {
+        if(!this.merchantAddress) {
+            this.error = 'Please supply merchantAddress to the widget component';
+            throw 'Please supply merchantAddress to the widget component';
+        }
+
         let counter = 5;
         let refresh = setInterval(() => {
             if(typeof window.zilPay !== 'undefined') {
