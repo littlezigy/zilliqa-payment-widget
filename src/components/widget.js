@@ -41,15 +41,13 @@ export default {
             let zilSwap = new Zilswap(this.network, provider);
 
             if(this.paymentToken.name == 'XSGD') {
-                return this.amount;
+                return this.payAmount = this.amount;
             } else {
 
                 console.log(this.paymentToken.id, this.tokens.XSGD, this.amount)
                 return zilSwap.initialize()
                 .then(() => zilSwap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount))
                 .then(res => {
-                    console.log('RESS NEW RATES', res);
-                    console.log('RESULT RATES', res.data);
                     this.payAmount = res.expectedAmount / 1000000;
                     this.slippage = res.slippage * 1000000;
                 });
