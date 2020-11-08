@@ -1,4 +1,4 @@
-import { Zilswap, WalletProvider } from 'zilswap-sdk';
+import { Zilswap } from 'zilswap-sdk';
 import { Zilliqa } from '@zilliqa-js/zilliqa';
 // import * as sdk from 'zilswap-sdk';
 import axios from 'axios';
@@ -22,20 +22,27 @@ export default {
         merchantAddress: String,
         amount: Number
     },
+    watch: {
+        paymentToken: function() {
+            return this.fetchRates();
+        }
+    },
     methods: {
         fetchRates: function() {
-            const provider = zq(window.zilPay, [ this.wallet ]);
-            if(this.paymentToken.name != 'XSGD') {
+            const provider = window.zilPay;
+            let zilSwap = new Zilswap(this.network, provider);
+
+            if(this.paymentToken.name == 'XSGD') {
                 return this.amount;
             } else {
-                const pro = WalletProvider;
-                console.log('PROVIDER FROM SWAP', pro);
-                let zilswap = new Zilswap(this.network, provider);
 
-                return zilswap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                console.log(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                return zilSwap.initialize()
+                .then(() => zilSwap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount))
                 .then(res => {
+                    console.log('RESS NEW RATES', res);
                     console.log('RESULT RATES', res.data);
-                    this.payAmount = res.data;
+                    this.payAmount = res;
                 });
             }
         },
@@ -51,10 +58,13 @@ export default {
         payInZRC20: function() {
             zq = new Zilliqa(null, window.zilPay.provider);
             console.log('ZQ', zq);
-            const provider = zq.provider;
-            // TODO: Fix constructor function error
+            const provider = window.zilPay;
+
             let zilSwap = new Zilswap(this.network, provider);
             console.log('ZILSWAP OBJ', zilSwap);
+            zilSwap.initialize();
+            console.log('AFTER INIT', zilSwap);
+
             return zilSwap.swapWithExactOutput(this.paymentToken.id, this.tokens.XSGD, this.amount, 200, this.merchantAddress)
             .then(res => {
                 console.log('RESPONSE', res);
@@ -106,6 +116,7 @@ export default {
             if(typeof window.zilPay !== 'undefined') {
                 clearInterval(refresh);
                 return this.initZq()
+                .then(() => this.fetchRates());
             } else
                 counter--;
             if(counter == 0) {
