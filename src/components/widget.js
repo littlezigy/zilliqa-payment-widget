@@ -22,22 +22,27 @@ export default {
         merchantAddress: String,
         amount: Number
     },
+    watch: {
+        paymentToken: function() {
+            return this.fetchRates();
+        }
+    },
     methods: {
         fetchRates: function() {
             const provider = window.zilPay;
             let zilSwap = new Zilswap(this.network, provider);
-            zilSwap.initialize();
-            console.log('ZIL SWAP', zilSwap);
 
             if(this.paymentToken.name == 'XSGD') {
                 return this.amount;
             } else {
-                let zilswap = new Zilswap(this.network, provider);
 
-                return zilswap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                console.log(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                return zilSwap.initialize()
+                .then(() => zilSwap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount))
                 .then(res => {
+                    console.log('RESS NEW RATES', res);
                     console.log('RESULT RATES', res.data);
-                    this.payAmount = res.data;
+                    this.payAmount = res;
                 });
             }
         },
