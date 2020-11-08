@@ -44,6 +44,7 @@
     font-size: 2em;
 }
 .card {
+    background: white;
     border-radius: 1.5em;
     box-shadow: 1px 1px 10px rgba(165, 165, 165, 0.4);
     width: fit-content;
@@ -94,6 +95,7 @@ input[type=submit],
 button {
     padding: 0.5em 1em;
 }
+
 #showAdvanced {
     border-top: none;
     border-left: none;
