@@ -1,16 +1,18 @@
 <template>
 <div class = 'card' id = 'widget'>
-    <h4>Pay Using a ZRC20 token</h4>
-    <p v-if = 'network != "mainnet"' class = 'subtitle'>({{ network.toUpperCase() }})</p>
-
+    <img alt="Zilliqa logo" src="../assets/logo.png">
+    <p class = 'title'>xdPay</p>
+    <p>Pay Using a ZRC20 token</p>
     <p>You are paying {{ amount }} XGSD. You can pay this in any ZRC20 token</p>
+
+    <p v-if = 'network != "mainnet"' id = 'network'>({{ network }})</p>
 
     <label for ='tokens'>Choose token</label>
     <select id = 'token' v-model = 'paymentToken'>
-        <option v-for = '(token, name, index) in tokens' :value = 'token' :key = 'index'>{{ name }}</option>
+        <option v-for = '(token, name, index) in tokens' :value = '{ id: token, name}' :key = 'index'>{{ name }}</option>
     </select>
 
-    <button @click = 'pay'>Pay {{ amount }} </button>
+    <button @click = 'pay'>Pay {{ payAmount }} {{ paymentToken.name }}</button>
 
 </div>
 </template>
@@ -24,11 +26,49 @@
     width: fit-content;
     padding: 1.5em;
 }
-input[type=submit] {
-    display: block;
-}
-.subtitle {
+#network {
     font-weight: bold;
     font-size: 0.8em;
+    text-transform: uppercase;
+}
+.title {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+button,
+input[type=submit] {
+    display: block;
+    margin: 1em auto;
+    background: skyblue;
+    border-radius: 5px;
+    border: 2px solid skyblue;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+button:hover,
+input[type=submit]:hover {
+    border: 2px solid skyblue;
+    color: #4d97b5;
+    background: none;
+}
+
+
+select {
+    margin: 2em;
+}
+select {
+    margin: 2em;
+}
+
+input[type=text],
+input[type=number],
+select,
+input[type=submit],
+button {
+    padding: 0.5em 1em;
 }
 </style>

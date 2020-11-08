@@ -1,5 +1,9 @@
-import { Zilswap } from 'zilswap-sdk';
+import { Zilswap, WalletProvider } from 'zilswap-sdk';
+import { Zilliqa } from '@zilliqa-js/zilliqa';
+// import * as sdk from 'zilswap-sdk';
 import axios from 'axios';
+
+let zq = new Zilliqa();
 
 export default {
     data() {
@@ -19,27 +23,45 @@ export default {
         amount: Number
     },
     methods: {
+        fetchRates: function() {
+            const provider = zq(window.zilPay, [ this.wallet ]);
+            if(this.paymentToken.name != 'XSGD') {
+                return this.amount;
+            } else {
+                const pro = WalletProvider;
+                console.log('PROVIDER FROM SWAP', pro);
+                let zilswap = new Zilswap(this.network, provider);
+
+                return zilswap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                .then(res => {
+                    console.log('RESULT RATES', res.data);
+                    this.payAmount = res.data;
+                });
+            }
+        },
+
         pay: function() {
-            if(this.paymentToken == this.tokens.XSGD)
+            // const pro = WalletProvider;
+            if(this.paymentToken.name == 'XSGD')
                 return this.payXSGD();
             else return this.payInZRC20();
         },
         payXSGD: function() {
         },
         payInZRC20: function() {
+            zq = new Zilliqa(null, window.zilPay.provider);
+            console.log('ZQ', zq);
+            const provider = zq.provider;
             // TODO: Fix constructor function error
-            let zilSwap = new Zilswap(this.network, window.zilPay);
+            let zilSwap = new Zilswap(this.network, provider);
             console.log('ZILSWAP OBJ', zilSwap);
-            return zilSwap.swapWithExactOutput(this.paymentToken, this.tokens.XSGD, this.amount, 200, this.merchantAddress)
+            return zilSwap.swapWithExactOutput(this.paymentToken.id, this.tokens.XSGD, this.amount, 200, this.merchantAddress)
             .then(res => {
                 console.log('RESPONSE', res);
             });
         },
         detectNetwork: function() {
-            console.log('SETTING NETWORK');
-            console.log('NETWORK IS', window.zilPay.wallet.net);
-            this.network = window.zilPay.wallet.net;
-            console.log('NETWOK SET', this.network);
+            this.network = (window.zilPay.wallet.net == 'testnet') ? 'TestNet' : 'MainNet';
         },
         fetchTokens: function() {
             return axios.get('https://raw.githubusercontent.com/Switcheo/zilswap-token-list/master/tokens.json')
@@ -49,37 +71,47 @@ export default {
             });
         },
         setTokens: function() {
-            console.log('SETTING TOKENS');
-            console.log('NETWORK', this.network);
-            if (this.network == 'testnet') 
+            if (this.network.match(/testnet/i)) 
                 this.tokens = this.testnet.tokens;
-            else if(this.network == 'mainnet')
-                this.tokens = 'mainnet';
-        }
-    },
-    mounted() {
-        if(typeof window.zilPay == 'undefined') {
-            alert("You need to have the ZilPay browser extension installed\nGet it here: https://chrome.google.com/webstore/detail/zilpay/klnaejjgbibmhlephnhpmaofohgkpgkd");
-        } else {
-            console.log('ZILPAY', typeof window.zilPay);
+            else if(this.network.match(/mainnet/i))
+                this.tokens = this.mainnet.tokens;
+        }, 
+        initZq: function() {
             return window.zilPay.wallet.connect()
             .then(res => {
                 if(res === true) {
                     this.wallet = window.zilPay.wallet.defaultAccount;
+                    delete zq.subscriptionBuilder;
+                    //console.log('WIN ZILOPAY', zq);
+                    //let zilswap = new Zilswap(this.network, { ...zq, wallet: this.wallet });
+                    // console.log('ZILPAY', zilswap);
 
                     this.detectNetwork();
 
                     return this.fetchTokens()
                     .then(() => this.setTokens())
-                    .then(() => this.paymentToken = this.tokens[0]);
+                    .then(() => this.paymentToken = { id: this.tokens.ZIL, name: 'ZIL' });
 
                 } else if(res === false)
                     alert("Could not connect to ZilPay wallet");
                 else {
                     alert("Something else is the matter. Check console");
-                    console.log('res', res);
                 }
             });
         }
+    },
+    mounted() {
+        let counter = 5;
+        let refresh = setInterval(() => {
+            if(typeof window.zilPay !== 'undefined') {
+                clearInterval(refresh);
+                return this.initZq()
+            } else
+                counter--;
+            if(counter == 0) {
+                return alert("You need to have the ZilPay browser extension installed\nGet it here: https://chrome.google.com/webstore/detail/zilpay/klnaejjgbibmhlephnhpmaofohgkpgkd");
+            }
+        }, 500);
+
     }
 }
