@@ -48,5 +48,8 @@ export default {
     font-size: 0.8em;
     color: red;
 }
+p {
+    max-width: 300px;
+}
 </style>
 
