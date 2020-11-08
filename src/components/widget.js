@@ -69,12 +69,17 @@ export default {
 
             let zilSwap = new Zilswap(this.network, provider);
             console.log('ZILSWAP OBJ', zilSwap);
-            zilSwap.initialize();
-            console.log('AFTER INIT', zilSwap);
-
-            return zilSwap.swapWithExactOutput(this.paymentToken.id, this.tokens.XSGD, this.amount, 200, this.merchantAddress)
-            .then(res => {
+            return zilSwap.initialize()
+            .then(() => zilSwap.swapWithExactOutput(
+                this.paymentToken.id, this.tokens.XSGD,
+                this.amount, 200, this.merchantAddress
+            )).then(res => {
                 console.log('RESPONSE', res);
+                this.success = true;
+            }).catch(e => {
+                if(e.message.includes('Insufficent') && e.message.includes('in wallet')) {
+                    return this.error = 'Insufficent ' + this.paymentToken.name + ' in wallet';
+                } else throw e;
             });
         },
         detectNetwork: function() {
