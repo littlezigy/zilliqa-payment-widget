@@ -15,12 +15,6 @@ export default {
         'merchantaddress',
         'debug'
     ],
-    data() {
-        return {
-            //amount: 100,
-            //merchantAddress: 'zil15q2gxq7tze6k025apsa3c362chz6k76zrmnzkk'
-        }
-    },
     components: {
         Widget
     }

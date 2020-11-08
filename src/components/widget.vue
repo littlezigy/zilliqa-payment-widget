@@ -94,4 +94,14 @@ input[type=submit],
 button {
     padding: 0.5em 1em;
 }
+#showAdvanced {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #4d97b5;
+    background: none;
+    padding: 0 0 0.1em 0;
+    font-size: 1rem;
+    border-radius: 0;
+}
 </style>
