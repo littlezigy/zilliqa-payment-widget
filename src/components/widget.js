@@ -21,7 +21,8 @@ export default {
 
     props: {
         merchantAddress: String,
-        amount: Number
+        amount: Number,
+        debug: Boolean
     },
     watch: {
         paymentToken: function() {

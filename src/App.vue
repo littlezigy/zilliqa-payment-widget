@@ -1,6 +1,6 @@
 <template>
   <div id="widget">
-    <Widget merchantAddress = 'merchantAddress' :amount = 'amount' msg="Welcome to Your Vue.js App"/>
+    <Widget :merchantAddress = 'merchantAddress' :amount = 'amount' :debug = 'debug' msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
     name: 'App',
     props: [
         'amount',
-        'merchantAddress'
+        'merchantAddress',
+        'debug'
 ],
     data() {
         return {
