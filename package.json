@@ -12,6 +12,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-custom-element": "^3.2.14",
     "zilswap-sdk": "^1.0.0"
   },
   "devDependencies": {
