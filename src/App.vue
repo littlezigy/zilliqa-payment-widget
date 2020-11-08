@@ -9,10 +9,14 @@ import Widget from './components/widget.vue'
 
 export default {
     name: 'App',
+    props: [
+        'amount',
+        'merchantAddress'
+],
     data() {
         return {
-            amount: 100,
-            merchantAddress: 'zil15q2gxq7tze6k025apsa3c362chz6k76zrmnzkk'
+            //amount: 100,
+            //merchantAddress: 'zil15q2gxq7tze6k025apsa3c362chz6k76zrmnzkk'
         }
     },
     components: {
