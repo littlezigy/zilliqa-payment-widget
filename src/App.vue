@@ -45,5 +45,12 @@ export default {
 p {
     max-width: 300px;
 }
+button[disabled]:hover,
+button[disabled] {
+    background: white;
+    color:grey;
+    border-color: grey;
+    cursor: not-allowed;
+}
 </style>
 

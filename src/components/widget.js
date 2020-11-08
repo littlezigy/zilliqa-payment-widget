@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             wallet: null,
-            payAmount: 100,
+            payAmount: null,
             tokens: [],
             paymentToken: {id: null, name: ''},
             network: '',
@@ -28,6 +28,7 @@ export default {
     },
     watch: {
         paymentToken: function() {
+            this.payAmount = null;
             return this.fetchRates();
         }
     },

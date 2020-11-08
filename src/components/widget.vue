@@ -13,7 +13,10 @@
     </select>
 
     <p class = 'error' v-if = 'error'>{{ error }}</p>
-    <button @click = 'pay'>Pay {{ payAmount.toFixed(4) }} {{ paymentToken.name }}</button>
+    <button v-if = 'payAmount == null' disabled>Pay ... {{ paymentToken.name }}</button>
+    <button v-else @click = 'pay'>Pay {{ payAmount.toFixed(4) }} {{ paymentToken.name }}</button>
+    {{ payAmount == null }}
+    {{ payAmount }}
 
     <button id = 'showAdvanced' @click = 'showAdvanced = !showAdvanced'>Show Advanced</button>
 
