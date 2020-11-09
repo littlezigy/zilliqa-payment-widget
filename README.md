@@ -28,8 +28,8 @@ Then use the following tag where you'd like the widget to appear
 
 
 ***
-<br />
-<br />
+<br>
+
 ## Example
 Here's a sample page with the widget installed
 
