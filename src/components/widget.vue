@@ -15,8 +15,6 @@
     <p class = 'error' v-if = 'error'>{{ error }}</p>
     <button v-if = 'payAmount == null' disabled>Pay ... {{ paymentToken.name }}</button>
     <button v-else @click = 'pay'>Pay {{ payAmount.toFixed(4) }} {{ paymentToken.name }}</button>
-    {{ payAmount == null }}
-    {{ payAmount }}
 
     <button id = 'showAdvanced' @click = 'showAdvanced = !showAdvanced'>Show Advanced</button>
 
@@ -29,7 +27,7 @@
     </div>
 
     <div id = 'advanced' v-if = 'showAdvanced'>
-        <p>Slippage: {{ slippage }}</p>
+        <p>Slippage: {{ slippage.toFixed(4) }}%</p>
     </div>
 
 </div>

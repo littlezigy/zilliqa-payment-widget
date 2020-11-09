@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
@@ -10,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "bignumber": "^1.1.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-custom-element": "^3.2.14",

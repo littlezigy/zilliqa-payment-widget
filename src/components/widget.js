@@ -1,3 +1,4 @@
+import { BigNumber } from 'bignumber.js';
 import { Zilswap } from 'zilswap-sdk';
 import axios from 'axios';
 
@@ -34,6 +35,8 @@ export default {
     },
     methods: {
         fetchRates: function() {
+            let amount = this.amount * (10**6);
+
             const provider = window.zilPay;
             let zilSwap = new Zilswap(this.network, provider);
 
@@ -41,12 +44,17 @@ export default {
                 return this.payAmount = this.amount;
             } else {
 
-                console.log(this.paymentToken.id, this.tokens.XSGD, this.amount)
+                console.log(this.paymentToken.id, this.tokens.XSGD, this.amount.toString())
                 return zilSwap.initialize()
-                .then(() => zilSwap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, this.amount))
+                .then(() => zilSwap.getRatesForOutput(this.paymentToken.id, this.tokens.XSGD, amount.toString()))
                 .then(res => {
-                    this.payAmount = res.expectedAmount / 1000000;
-                    this.slippage = res.slippage * 1000000;
+                    console.log('RESS', res);
+                    console.log('SLIPPAGE TO STR', new BigNumber(res.slippage).toString());
+                    console.log('SLIPPAGE TO Number', new BigNumber(res.slippage).toNumber());
+                    console.log('EXPECTED AMT String', new BigNumber(res.expectedAmount).toString());
+                    console.log('EXPECTED AMT NUMBER', new BigNumber(res.expectedAmount).toNumber());
+                    this.payAmount = res.expectedAmount / (10 ** 12);
+                    this.slippage = res.slippage;
                 });
             }
         },
@@ -61,13 +69,18 @@ export default {
         },
         payInZRC20: function() {
             const provider = window.zilPay;
+            let amount = this.amount * (10**6);
 
             let zilSwap = new Zilswap(this.network, provider);
-            console.log('ZILSWAP OBJ', zilSwap);
+            console.log('ZILSWAP PARAMETERS');
+            console.log(
+                this.paymentToken.id, this.tokens.XSGD,
+                this.amount.toString(), 2, this.merchantAddress
+            );
             return zilSwap.initialize()
             .then(() => zilSwap.swapWithExactOutput(
                 this.paymentToken.id, this.tokens.XSGD,
-                this.amount, 200, this.merchantAddress
+                amount.toString(), 10, this.merchantAddress
             )).then(res => {
                 console.log('RESPONSE', res);
                 this.success = true;
