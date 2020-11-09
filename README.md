@@ -26,9 +26,11 @@ Then use the following tag where you'd like the widget to appear
 `amount` should be an integer,
 `merchantAddress` should be your wallet address. It is a string
 
-***
 
-### Example
+***
+<br />
+<br />
+## Example
 Here's a sample page with the widget installed
 
 ```
