@@ -12,7 +12,7 @@ In the head, or near the top of your page, enter the following line
 
 In the footer, or at the bottom of your page, enter the following line
 ```
-<script src = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQg/js/app~748942c6.js'></script>
+<script src = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/js/app~748942c6.js'></script>
 ```
 
 Then use the following tag where you'd like the widget to appear
