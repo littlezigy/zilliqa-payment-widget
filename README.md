@@ -7,12 +7,12 @@ To use this widget in your page, copy the css and js files into your page.
 
 In the head, or near the top of your page, enter the following line
 ```
-<link rel = 'stylesheet' href = 'https://siasky.net/AAA-JibQ_yJe199VwdNTUk7Bfea8rDa6vuUlLQoI-439Ng/css/app~748942c6.css'>
+<link rel = 'stylesheet' href = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/css/app~748942c6.css'>
 ```
 
 In the footer, or at the bottom of your page, enter the following line
 ```
-<script src = 'https://siasky.net/AAA-JibQ_yJe199VwdNTUk7Bfea8rDa6vuUlLQoI-439Ng/js/app~748942c6.js'></script>
+<script src = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQg/js/app~748942c6.js'></script>
 ```
 
 Then use the following tag where you'd like the widget to appear
@@ -28,7 +28,7 @@ Here's a sample page with the widget installed
 ```
 <html>
     <head>
-        <link rel = 'stylesheet' href = 'https://siasky.net/AAA-JibQ_yJe199VwdNTUk7Bfea8rDa6vuUlLQoI-439Ng/css/app~748942c6.css'>
+        <link rel = 'stylesheet' href = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/css/app~748942c6.css'>
     </head>
 
     <body>
@@ -37,7 +37,7 @@ Here's a sample page with the widget installed
         </div>
 
         <footer>
-            <script src = 'https://siasky.net/AAA-JibQ_yJe199VwdNTUk7Bfea8rDa6vuUlLQoI-439Ng/js/app~748942c6.js'></script>
+            <script src = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/js/app~748942c6.js'></script>
         </footer>
     </body>
 </html>
