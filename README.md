@@ -31,7 +31,7 @@ Then use the following tag where you'd like the widget to appear
 <br>
 
 ## Example
-Here's a sample page with the widget installed
+Here's sample code with the widget installed
 
 ```
 <html>
