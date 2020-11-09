@@ -5,16 +5,19 @@
 ## Using the Widget
 To use this widget in your page, copy the css and js files into your page.
 
+### Header
 In the head, or near the top of your page, enter the following line
 ```
 <link rel = 'stylesheet' href = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/css/app~748942c6.css'>
 ```
 
+### Footer
 In the footer, or at the bottom of your page, enter the following line
 ```
 <script src = 'https://siasky.net/AACkshPs8Nh2AxfANi3PdpCTe1QF1KDEc1pSFORpKr-cYQ/js/app~748942c6.js'></script>
 ```
 
+### Widget
 Then use the following tag where you'd like the widget to appear
 ```
 <vue-widget amount = 1 merchantAddress = 'merchant_address'></vue-widget>
@@ -22,6 +25,8 @@ Then use the following tag where you'd like the widget to appear
 
 `amount` should be an integer,
 `merchantAddress` should be your wallet address. It is a string
+
+***
 
 Here's a sample page with the widget installed
 
