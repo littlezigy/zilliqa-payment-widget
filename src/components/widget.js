@@ -53,7 +53,47 @@ export default {
                     console.log('SLIPPAGE TO Number', new BigNumber(res.slippage).toNumber());
                     console.log('EXPECTED AMT String', new BigNumber(res.expectedAmount).toString());
                     console.log('EXPECTED AMT NUMBER', new BigNumber(res.expectedAmount).toNumber());
-                    this.payAmount = res.expectedAmount / (10 ** 12);
+
+                    let exponent;
+
+                    switch(this.paymentToken.name) {
+                        case 'BOLT':
+                            exponent = 18;
+                            break;
+                        case 'CARB':
+                            exponent = 8;
+                            break;
+                        case 'gZIL':
+                            exponent = 15;
+                            break;
+                        case 'RedC':
+                            exponent = 2;
+                            break;
+                        case 'SERGS':
+                            exponent = 5;
+                            break;
+                        case 'SHRK':
+                            exponent = 6;
+                            break;
+                        case 'SWTH':
+                            exponent = 8;
+                            break;
+                        case 'ZLF':
+                            exponent = 5;
+                            break;
+                        case 'ZLP':
+                            exponent = 18;
+                            break;
+                        case 'ZYF':
+                            exponent = 3;
+                            break;
+                        default:
+                        case 'ZIL':
+                            exponent = 12;
+                            break;
+                    }
+
+                    this.payAmount = res.expectedAmount / ( 10 ** exponent);
                     this.slippage = res.slippage;
                 });
             }
